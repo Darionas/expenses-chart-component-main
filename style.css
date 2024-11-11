@@ -1,0 +1,13 @@
+canvas {
+   background-color: hsl(27, 66%, 92%, 0.3);
+}
+
+canvas:hover {
+   cursor: pointer;
+}
+
+#chart {
+   width: 35rem;
+   height: 100%;
+}
+
