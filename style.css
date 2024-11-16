@@ -1,13 +1,262 @@
-canvas {
-   background-color: hsl(27, 66%, 92%, 0.3);
-}
+:root {
+   /* colors */
+   /* primary*/
+   --clr-soft-red: hsl(10, 79%, 65%);
+   --clr-cyan: hsl(186, 34%, 60%);
+   
 
-canvas:hover {
-   cursor: pointer;
-}
+    /* neutral */
+    --clr-dark-brown: hsl(25, 47%, 15%);
+    --clr-medium-brown: hsl(28, 10%, 53%);
+    --clr-cream: hsl(27, 66%, 92%);
+    --clr-very-pale-orange: hsl(33, 100%, 98%);
+   
+ 
+   /* typography */
+   /* fonts */
+   --ff-primary: "DM Sans", sans-serif;
+   --fw-400: 400; /* base */
+   --fw-700: 700; 
+   --fs-18: 1.125rem;
+   --fs-custom: 0.6rem;
+}  
 
-#chart {
-   width: 35rem;
+
+html {
    height: 100%;
 }
 
+body {
+   min-height: 100%;
+}
+
+p, h2 {
+   line-height: 1.4;
+}
+
+
+body {
+   display: flex;
+   min-height: 100vh;
+   justify-content: center;
+   align-items: center;
+   font-family: var(--ff-primary);
+   font-size: var(--fs-18);
+   font-weight: var(--fw-400);
+   background-color: var(--clr-cream);
+}
+
+/*---------------------Mobile layout-------------------------*/
+.grid__container {
+   display: grid;
+   grid-template-columns: 1fr;
+   grid-template-areas:
+       'header'
+       'main'
+       'attribution';
+   justify-items: center;
+   /* align-self: center; */
+   width: 17rem;
+   /* border: 2px solid red; */
+}
+
+/* style 1st component - mobile */
+.header {
+   display: grid;
+   grid-template-columns: 1fr;
+   grid-template-areas:
+      'header__title';
+   width: 90%;
+   justify-items: center;
+   align-items: center;
+   text-align: center;
+   display: none;
+}
+
+/* .header__title {
+   border: 2px solid green;
+} */
+/* .sr-only {
+   display: none;
+ }; */
+
+/* style 2nd component - mobile */
+.main {
+   display: grid;
+   grid-template-columns: 1fr;
+   grid-template-areas:
+      'main__title'
+      'main__content';
+   gap: 1rem;
+   width: 99%;
+   /* border: 2px solid blue; */
+}
+
+.main__title {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   grid-template-areas:
+      'main__balance main__title-logo';
+   align-items: center;
+   border-radius: 0.5rem;
+   background-color: var(--clr-soft-red);
+   padding: 0.5rem 0.8rem;
+   width: 100%;
+   /* border: 2px solid brown; */
+}
+
+.main__balance-title {
+   font-size: var(--fs-custom);
+   color: var(--clr-cream);
+}
+
+.main__balance-amount {
+   font-weight: var(--fw-700);
+   color: var(--clr-very-pale-orange);
+}
+
+.main__title-logo {
+   justify-self: end;
+   /*border: 2px solid brown; */
+}
+
+.svgs {
+   display: grid;
+   align-self: center;
+   width: 3rem;
+}
+
+.main__content {
+   display: grid;
+   grid-template-columns: 1fr;
+   grid-template-areas:
+      'main__content-details'
+      'main__content-summary';
+   padding: 0.8rem;
+   border-radius: 0.5rem;
+   width: 100%;
+   background-color: var(--clr-very-pale-orange);
+}
+
+.main__content-details {
+   width: 99%;
+   padding-bottom: 0.5rem;
+   border-bottom: 1px solid var(--clr-cream);
+   /* border: 2px solid blue; */
+}
+
+/* #myChart {
+   max-width: 100%;
+   height: auto;
+} */
+
+#myChart:hover {
+   cursor: pointer;
+}
+
+.main__content-summary {
+   display: grid;
+   grid-template-columns: 1fr 1fr;
+   grid-template-areas:
+      'main__content-summary-details main__content-summary-statistics';
+   padding-top: 1rem;
+   /* border: 2px solid green; */
+}
+
+.main__content-summary-details {
+   align-content: end;
+   /* border: 2px solid green; */
+}
+
+.main__content-summary-title {
+   font-size: var(--fs-custom);
+   color: var(--clr-medium-brown);
+}
+
+.main__content-summary-amount {
+   font-size: 1.5rem;
+   color: var(--clr-dark-brown);
+   font-weight: var(--fw-700);
+}
+
+.main__content-summary-statistics {
+   justify-self: end;
+   align-content: end;
+   text-align: right;
+   font-size: var(--fs-custom);
+   /* border: 2px solid green; */
+}
+
+.main__content-summary-percentage {
+   font-weight: var(--fw-700);
+}
+
+.main__content-summary-period {
+   color: var(--clr-medium-brown);
+}
+
+/* style 3rd component - mobile */
+/* .attribution {
+   border: 2px solid green;
+} */
+
+/*---------------------Desktop layout-------------------------*/
+@media screen and (min-width: 48rem) {
+
+/* style 1st component - mobile */
+
+/*style 2nd component - desktop */
+
+/* style 3rd component - mobile */
+
+
+
+
+}
+
+
+/*---------grid area name--------------*/
+
+.header {
+   grid-area: header;
+}
+
+.main {
+   grid-area: main;
+}
+
+.main__title {
+   grid-area: main__title;
+}
+
+.main__balance {
+   grid-area: main__balance;
+}
+
+.main__title-logo {
+   grid-area: main__title-logo;
+}
+
+.main__content {
+   grid-area: main__content;
+}
+
+.main__content-details {
+   grid-area: main__content-details;
+}
+
+.main__content-summary {
+   grid-area: main__content-summary;
+}
+
+.main__content-summary-details {
+   grid-area: main__content-summary-details;
+}
+
+.main__content-summary-statistics {
+   grid-area: main__content-summary-statistics;
+}
+
+.attribution {
+   grid-area: attribution;
+}

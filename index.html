@@ -8,7 +8,9 @@
       <meta name="description" content="Monthly expenses chart component showing a weekly breakdown and comparisons." />
       <link rel="icon" type="image/png" sizes="32x32" href="./images/favicon-32x32.png" />
       <meta http-equiv="X-UA-Compatible" content="ie=edge" />
-      <!--*<link href="https://fonts.googleapis.com/css2?family=Rubik:wght@400..700&display=swap" rel="stylesheet" />-->
+      <link rel="preconnect" href="https://fonts.googleapis.com">
+      <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+      <link href="https://fonts.googleapis.com/css2?family=DM+Sans:ital,opsz,wght@0,9..40,100..1000;1,9..40,100..1000&display=swap" rel="stylesheet">
       <link rel="stylesheet" href="style.css" />
       <link rel="stylesheet" href="reset.css" />
       <link rel="stylesheet" href="FM_part.css" />
@@ -17,7 +19,7 @@
    <body>
       <div class="grid__container">
          <header class="header">
-            <h1 class="header__title">Monthly expenses chart component</h1>
+            <h1 class="header__title sr-only">Monthly expenses chart component</h1>
          </header>
          <main class="main" aria-labelledby="main-title">
             <div class="main__title">
@@ -26,7 +28,7 @@
                   <p class="main__balance-amount" aria-live="polite">&#36;921.48</p>
                </div>
                <div class="main__title-logo" role="img" aria-label="Company logo">
-                  <svg width="72" height="48" viewBox="0 0 72 48" xmlns="http://www.w3.org/2000/svg">
+                  <svg class="svgs" width="72" height="48" viewBox="0 0 72 48" xmlns="http://www.w3.org/2000/svg">
                      <title>Company Logo</title>
                      <g fill="none" fill-rule="evenodd">
                         <circle fill="#382314" cx="48" cy="24" r="24"/>
@@ -48,7 +50,7 @@
                   </div>
                   <div class="main__content-summary-statistics">
                      <p class="main__content-summary-percentage" aria-label="Percentage increase">&#43;2.4&#37;</p>
-                     <p class="main__content-summary-periog">from last month</p>
+                     <p class="main__content-summary-period">from last month</p>
                   </div>
                </div>
             </div>

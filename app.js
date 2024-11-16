@@ -1,23 +1,35 @@
 
 
 //Initial variables
-const ctx = document.getElementById('myChart');
-const dataArr = [17.45, 34.91, 52.36, 31.07, 23.39, 43.28, 25.48];
-const labels = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+const ctx = document.getElementById('myChart').getContext('2d');
+const dataArr = [];
+let labels = [];
 
-//Configurations
-Chart.defaults.layout.padding.left = 20;
-Chart.defaults.plugins.title.font.weight = 'bold';
-Chart.defaults.plugins.title.font.size = 18;
+//fetch data from data.json
+fetch('data.json')
+   .then(function(response) {
+      return response.json();
+   })
+   .then(function(data) {
+      if(!Array.isArray(data)) {
+         throw new Error('Data is not in array format!');
+      }
+      data.forEach((item) => {
+         const {day, amount} = item;
+         labels.push(day); 
+         dataArr.push(amount);
+      })
+
+//Modifying global defaults
 Chart.defaults.elements.bar.borderSkipped = false;
-Chart.defaults.elements.bar.borderRadius = 4;
+Chart.defaults.elements.bar.borderRadius = 3;
 
 //Generate colors array based on max value
 const maxVal = Math.max(...dataArr);
-const colors = dataArr.map(value => value < maxVal ? 'hsl(186, 34%, 60%, 1)' : 'hsl(10, 79%, 65%, 1)');
+const colors = dataArr.map(value => value < maxVal ? 'hsl(10, 79%, 65%, 1)' : 'hsl(186, 34%, 60%, 1)');
 const hoverColors = colors.map(arr => arr.replace(/1\)$/, '0.7)'));
 
-//Chart configuration
+//Chart instance
 const myChart = new Chart(ctx, {
    type: 'bar',
    data: {
@@ -32,37 +44,40 @@ const myChart = new Chart(ctx, {
       onHover: (event, elements) => {
          event.native.target.style.cursor = elements.length ? 'pointer' : 'default';
       },
-      layout: {
-             autoPadding: true
-      },
       responsive: true,
+      maintainAspectRatio: false,  // Allow chart to resize freely
       scales: {
          x: {
             grid: { display: false },
-            border: { display: false }
+            border: { display: false },
+            beginAtZero: true,
+            // 0 < categoryPercentage <= 1
+            categoryPercentage: 0.8,
+            // Set barPercentage to control bar width
+            barPercentage: 0.9 
          },
          y: {
             ticks: { display: false },
             grid: { display: false },
-            border: { display: false }
+            border: { display: false },
+            beginAtZero: true
          }
       },
       plugins: {
-         colors: { forceOverride: true, enabled: false },
+         colors: { enabled: false },
          legend: { display: false },
          title: {
             display: true,
             text: "Spending - Last 7 days",
             align: 'start',
-            padding: { top: 20, bottom: 40 }
+            padding: { top: 20, bottom: 20 },
+            font: { size: 18, weight: 700 }
          },
          tooltip: {       
-            // Disable the on-canvas tooltip
+            // Disable the on-canvas tooltip and override it
             enabled: false,
 
             external: function(context) {
-               //console.log(context);
-               // Tooltip Element
                let tooltipEl = document.getElementById('chartjs-tooltip');
 
                // Create element on first render
@@ -87,8 +102,6 @@ const myChart = new Chart(ctx, {
                
 
                function getBody(bodyItem) {
-                  //console.log(bodyItem);
-                  //console.log(bodyItem.lines);
                   return bodyItem.lines;
                }
             
@@ -100,9 +113,7 @@ const myChart = new Chart(ctx, {
                      let innerHtml = '<thead>';
                      bodyLines.forEach(function(body, i) {
                         let [num] = body;
-                        //console.log(num);
                         num = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD' }).format(num);
-                        //console.log(num);
                         const colors = tooltipModel.labelColors[i];
                         colors.backgroundColor = 'transparent';
                         let style = 'background:' + colors.backgroundColor;
@@ -128,8 +139,8 @@ const myChart = new Chart(ctx, {
                     tooltipEl.style.font = bodyFont.string;
                     tooltipEl.style.padding = tooltipModel.padding + 'px ' + tooltipModel.padding +'px';
                     tooltipEl.style.pointerEvents = 'none';
-                    tooltipEl.style.backgroundColor = 'black';
-                    tooltipEl.style.color = 'white';
+                    tooltipEl.style.backgroundColor = 'hsl(25, 47%, 15%)';
+                    tooltipEl.style.color = 'hsl(33, 100%, 98%)';
                     tooltipEl.style.padding = '5px';
                     tooltipEl.style.borderRadius = '0.3rem';
                 }
@@ -140,4 +151,6 @@ const myChart = new Chart(ctx, {
 
     });
 
- 
+   })
+      
+   .catch(err =>  console.error('Error fetching data: ', err));
