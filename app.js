@@ -18,7 +18,7 @@ fetch('data.json')
          const {day, amount} = item;
          labels.push(day); 
          dataArr.push(amount);
-      })
+      });
 
 //Modifying global defaults
 Chart.defaults.elements.bar.borderSkipped = false;
@@ -27,6 +27,7 @@ Chart.defaults.elements.bar.borderRadius = 3;
 //Generate colors array based on max value
 const maxVal = Math.max(...dataArr);
 const colors = dataArr.map(value => value < maxVal ? 'hsl(10, 79%, 65%, 1)' : 'hsl(186, 34%, 60%, 1)');
+//color chart bars on hover
 const hoverColors = colors.map(arr => arr.replace(/1\)$/, '0.7)'));
 
 //Chart instance

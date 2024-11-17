@@ -18,8 +18,8 @@
    </head>
    <body>
       <div class="grid__container">
-         <header class="header">
-            <h1 class="header__title sr-only">Monthly expenses chart component</h1>
+         <header class="header sr-only" aria-label="Page header">
+            <h1>Monthly expenses chart component</h1>
          </header>
          <main class="main" aria-labelledby="main-title">
             <div class="main__title">
@@ -28,7 +28,7 @@
                   <p class="main__balance-amount" aria-live="polite">&#36;921.48</p>
                </div>
                <div class="main__title-logo" role="img" aria-label="Company logo">
-                  <svg class="svgs" width="72" height="48" viewBox="0 0 72 48" xmlns="http://www.w3.org/2000/svg">
+                  <svg class="logo__svg" width="72" height="48" viewBox="0 0 72 48" xmlns="http://www.w3.org/2000/svg">
                      <title>Company Logo</title>
                      <g fill="none" fill-rule="evenodd">
                         <circle fill="#382314" cx="48" cy="24" r="24"/>
@@ -55,9 +55,9 @@
                </div>
             </div>
          </main>
-         <footer class="attribution">
+         <footer class="attribution" aria-label="Page footer">
             Challenge by <a href="https://www.frontendmentor.io?ref=challenge" target="_blank">Frontend Mentor</a>. 
-            Coded by <a href="#">@Darionas</a>.
+            Coded by <a href="https://www.frontendmentor.io/profile/Darionas">Darionas</a>.
          </footer>
       </div>
       <script type="module" src="app.js"></script>
